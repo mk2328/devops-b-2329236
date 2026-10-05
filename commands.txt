@@ -1,0 +1,51 @@
+GIT / GITHUB
+
+git init
+git add .
+git commit -m "Initial university event website"
+git branch -M main
+git remote add origin https://github.com/mk2328/devops-b-2329236.git
+git push -u origin main
+
+git switch -c update-content
+git add .
+git commit -m "Add fourth event activity"
+git push -u origin update-content
+
+git switch main
+git merge update-content
+git push origin main
+
+git add .
+git commit -m "Enable GitHub Pages deployment"
+git push origin main
+
+git add .
+git commit -m "Update event heading"
+git push origin main
+
+
+DOCKER
+
+docker build -t devops-b-2329236:v1 .
+docker run -d --name devops-b-2329236 -p 8080:80 devops-b-2329236:v1
+docker ps
+
+
+MINIKUBE / KUBERNETES
+
+minikube image load devops-b-2329236:v1
+
+kubectl apply -f deployment.yaml
+kubectl get pods
+
+kubectl apply -f service.yaml
+kubectl get service
+minikube service devops-b-2329236 --url
+
+kubectl scale deployment devops-b-2329236 --replicas=2
+kubectl get pods
+kubectl get deployment devops-b-2329236
+
+kubectl delete pod devops-b-2329236-75b599b87b-7fd4n
+kubectl get deployment devops-b-2329236
